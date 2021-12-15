@@ -11,6 +11,10 @@ class MainViewModel : ViewModel() {
     fun navigate() {
         _states.value = _states.value.copy(navigateToSecondary = true)
     }
+
+    fun navigated() {
+        _states.value = _states.value.copy(navigateToSecondary = false)
+    }
 }
 
 data class State(val navigateToSecondary: Boolean)

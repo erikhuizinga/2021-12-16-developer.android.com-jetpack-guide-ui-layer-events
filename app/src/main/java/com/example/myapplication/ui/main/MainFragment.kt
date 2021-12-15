@@ -36,6 +36,7 @@ class MainFragment : Fragment() {
                     Log.d("TaggyMcTagFace", state.toString())
                     if (state.navigateToSecondary) {
                         (requireActivity() as MainActivity).navigateToSecondary()
+                        viewModel.navigated()
                     }
                 }
             }
