@@ -1,8 +1,11 @@
 package com.example.myapplication
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.commit
+import androidx.fragment.app.commitNow
 import com.example.myapplication.ui.main.MainFragment
+import com.example.myapplication.ui.secondary.SecondaryFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -10,9 +13,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, MainFragment.newInstance())
-                    .commitNow()
+            supportFragmentManager.commitNow {
+                replace(R.id.container, MainFragment())
+            }
         }
+    }
+
+    fun navigateToSecondary() = supportFragmentManager.commit {
+        replace(R.id.container, SecondaryFragment())
+        addToBackStack(null) // Back press will pop this transaction off of the back stack
     }
 }
